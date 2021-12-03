@@ -20,7 +20,6 @@ class CreatePerfilTable extends Migration
             $table->integer('dni');
             $table->string('email', 40);
             $table->string('telefono', 13);
-            $table->timestamps();
         });
     }
 

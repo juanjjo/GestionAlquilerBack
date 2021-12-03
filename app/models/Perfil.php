@@ -8,7 +8,7 @@ class Perfil extends Model
 {
     protected $table = 'perfil';
     protected $fillable = [
-        'apellido', 
+        'apellido',
         'nombre',
         'dni',
         'email',
@@ -16,4 +16,8 @@ class Perfil extends Model
     ];
     public $timestamps = false;
     //
+    public function usuario()
+    {
+        return $this->hasOne('App\models\Usuario');
+    }
 }

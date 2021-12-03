@@ -10,7 +10,7 @@ class Usuario extends Authenticatable implements JWTSubject
 {
     protected $table = 'users';
     protected $fillable = [
-        'usuario', 
+        'usuario',
         'password',
         'activo',
         'rol',
@@ -28,7 +28,13 @@ class Usuario extends Authenticatable implements JWTSubject
      */
     public function getJWTCustomClaims() {
         return [];
-    }   
+    }
+
+    public function perfil()
+    {
+        return $this->belongsTo('App\models\Perfil','id_perfil');
+    }
+
     public function contrato()
     {
         return $this->hasOne('App\models\Contrato');

@@ -11,8 +11,12 @@ use Tymon\JWTAuth\Facades\JWTAuth;
 
 class AuthService
 {
-    public function __construct()
+    public $usuarioService;
+    public function __construct(
+        UsuarioService $usuarioService
+    )
     {
+        $this->usuarioService=$usuarioService;
     }
 
     public function login(Request $request)
@@ -22,8 +26,9 @@ class AuthService
         if (!$token = JWTAuth::attempt($credentials)) {
             return response()->json(['error' => 'Unauthorized'], 401);
         }
-
-        return $this->respondWithToken($token);
+        $usuario = new Usuario();
+        $usuario = $this->usuarioService->getOnePasswordUser($request->usuario,$request->password);
+        return $this->respondWithToken($token,$usuario);
     }
 
     public function me()
@@ -82,9 +87,11 @@ class AuthService
      *
      * @return \Illuminate\Http\JsonResponse
      */
-    protected function respondWithToken($token)
+    protected function respondWithToken($token,$usuario)
     {
+
         return response()->json([
+            'data: ' => $usuario,
             'access_token' => $token,
             'token_type' => 'bearer',
             'expires_in' => auth()->factory()->getTTL() * 60

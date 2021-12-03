@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Http\application\MainService;
 use App\models\Usuario;
+use App\models\Perfil;
 use Illuminate\Http\Request;
 
 class UsuarioController extends Controller
@@ -14,9 +15,9 @@ class UsuarioController extends Controller
     }
     // public function __construct()
     // {
-    //    
+    //
     // }
-    
+
     public function getAll(){
         return $this->mainService->usuarioService->getAll();
     }
@@ -27,7 +28,11 @@ class UsuarioController extends Controller
         }
         return response()->json($foundUsu, 200);
     }
-    
+
+    public function getByUserPassword($usuario,$password){
+        return $this->mainService->usuarioService->getOnePasswordUser($usuario,$password);
+    }
+
     public function blockUser()
     {
         return 'This is an admin route.';
