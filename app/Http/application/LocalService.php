@@ -11,7 +11,7 @@ class LocalService {
 
     public function __construct(){
 
-    } 
+    }
     public function index(){
         return Local::all();
     }
@@ -25,6 +25,7 @@ class LocalService {
     }
 
     public function insertLocal(Request $local){
+        $newLocal = new Local();
         $localInsert = new Local($local->toArray());
         $localInsert->save();
         return $localInsert;
@@ -35,11 +36,13 @@ class LocalService {
         $foundLocal = $this->getById($id);
         if(!$foundLocal){
             return null;
-        } 
-        $foundLocal->superficie = $req->superficie;
-        $foundLocal->imagen = $req->imagen;
-        $foundLocal->alquilado = $req->alquilado;
-        $foundLocal->idContrato = $req->idContrato;
+        }
+        $foundLocal->piso = $req->piso;
+        $foundLocal->numero = $req->numero;
+        $foundLocal->estado = $req->estado;
+        $foundLocal->ancho = $req->ancho;
+        $foundLocal->largo = $req->largo;
+        $foundLocal->precio = $req->precio;
         $foundLocal->save();
         return $foundLocal;
     }

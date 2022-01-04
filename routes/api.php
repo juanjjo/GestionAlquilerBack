@@ -42,6 +42,8 @@ Route::group(['middleware' => ['auth.role:admin']], function () {
     Route::get('/usuario/{id}', [UsuarioController::class, 'getOne']);
 });
 
+
+
 Route::post('/local', [LocalController::class, 'createLocal']);
     Route::get('/contrato', [ContratoController::class, 'getAll']);
     Route::get('/contrato/{id}', [ContratoController::class, 'getById']);
@@ -61,3 +63,4 @@ Route::group([
     Route::post('me', 'AuthController@me');
     Route::post('register', 'AuthController@register');
 });
+

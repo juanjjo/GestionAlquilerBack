@@ -35,8 +35,8 @@ class Usuario extends Authenticatable implements JWTSubject
         return $this->belongsTo('App\models\Perfil','id_perfil');
     }
 
-    public function contrato()
-    {
-        return $this->hasOne('App\models\Contrato');
-    }
+    // public function contrato()
+    // {
+    //     return $this->hasOne('App\models\Contrato');
+    // }
 }

@@ -89,20 +89,17 @@ class AuthService
      */
     protected function respondWithToken($token,$usuario)
     {
-        $data = ['data'=> $usuario,
-            'access_token' => $token,
-            'token_type' => 'bearer',
-            'expires_in' => auth()->factory()->getTTL() * 60];
+        {
+            $data = [
+                'data' => $usuario,
+                'access_token' => $token,
+                'token_type' => 'bearer',
+                'expires_in' => auth()->factory()->getTTL() * 60
+            ];
 
             return response()->json([
-                'success'=>$data]);
-        // return response()->json($data);
-        // return response()->json([
-
-        //     'data'=> $usuario,
-        //     'access_token' => $token,
-        //     'token_type' => 'bearer',
-        //     'expires_in' => auth()->factory()->getTTL() * 60
-        // ]);
+                'success' => $data
+            ]);
+        }
     }
 }

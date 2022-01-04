@@ -18,7 +18,13 @@ class LocalController extends Controller
     }
 
     public function index(){
-        return Local::all();
+        $locales = Local::all();
+        {
+
+            return response()->json([
+                'data' => $locales
+            ]);
+        }
     }
 
     public function getById($id){
@@ -30,18 +36,20 @@ class LocalController extends Controller
     }
 
     public function createLocal(Request $local){
+
         $local = $this->mainService->localService->insertLocal($local);
         return response()->json($local, 200);
     }
 
     public function updateLocal(Request $local, $id){
+
         $local = $this->mainService->localService->updateLocal($local,$id);
         if(!$local){
             return json_encode(['msg'=>'local no encontrado']);
         }
         return response()->json($local, 200);
     }
-    
+
     public function deleteLocal($id){
         $local = $this->mainService->localService->deleteLocal($id);
         if(!$local){

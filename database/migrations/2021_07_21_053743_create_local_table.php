@@ -14,12 +14,13 @@ class CreateLocalTable extends Migration
     public function up()
     {
         Schema::create('local', function (Blueprint $table) {
-            $table->increments('id');
-            $table->integer('superficie');
-            $table->boolean('alquilado')->nullable()->default(false);
-            $table->unsignedBigInteger('idContrato')->nullable()->default(null);
-            $table->foreign('idContrato')->references('id')->on('contrato')->onDelete('no action');
-            $table->timestamps();
+            $table->id();
+            $table->integer('piso');
+            $table->integer('numero');
+            $table->string('estado',25);
+            $table->integer('ancho');
+            $table->integer('largo');
+            $table->double('precio');
         });
     }
 
